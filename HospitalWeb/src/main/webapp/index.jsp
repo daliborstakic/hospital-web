@@ -13,6 +13,7 @@
 			<ul class="nav-links">
 				<li><a href="/Hospital/doktori/prikazDoktora">Prikaz
 						doktora</a></li>
+				<li><a href="/Hospital/auth/loginPage">Ulogujte se</a>
 			</ul>
 		</div>
 	</div>
