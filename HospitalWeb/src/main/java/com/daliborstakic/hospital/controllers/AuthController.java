@@ -82,8 +82,6 @@ public class AuthController {
 			default -> "/pacijent/pocetna";
 			};
 
-			System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString());
-
 			return new ModelAndView("redirect:" + stranica);
 		}
 

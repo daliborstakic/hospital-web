@@ -7,16 +7,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin - Glavna stranica</title>
+<link rel="stylesheet" href="../style.css" type="text/css" />
 </head>
 <body>
-	<a href="/Hospital/admin/unesiDoktora">Unesi doktora</a>
-	<br>
-	<a href="/Hospital/admin/unesiDepartman">Unesi departman</a>
-	<br>
-	<a href="/Hospital/admin/unesiSpecijalizaciju">Unesi
-		specijalizaciju</a>
-	<br>
-	<a href="/Hospital/admin/unesiLek">Unesi lekove</a>
+	<div class="header">
+		<div class="sidenav">
+			<ul class="nav-links">
+				<li><a href="/Hospital/admin/unesiDoktora">Unesi doktora</a></li>
+				<li><a href="/Hospital/admin/unesiDepartman">Unesi
+						departman</a></li>
+				<li><a href="/Hospital/admin/unesiSpecijalizaciju">Unesi
+						specijalizaciju</a></li>
+				<li><a href="/Hospital/admin/unesiLek">Unesi lekove</a></li>
+				<li><a href="/Hospital/admin/unesiTehnicara">Unesi
+						tehničara</a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
