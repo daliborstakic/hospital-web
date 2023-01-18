@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Bolnica - Login</title>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="../style.css" type="text/css" />
 </head>
 <body>
 	<c:url var="loginUrl" value="/login" />
@@ -17,28 +17,13 @@
 		</div>
 	</c:if>
 	<form action="${loginUrl}" method="post">
-		<table>
-			<tr>
-				<td>Username</td>
-				<td><input type="text" name="username"
-					placeholder="Enter Username" required></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td><input type="password" name="password"
-					placeholder="Enter Password" required></td>
-			</tr>
-			<tr>
-				<td>Remember Me:</td>
-				<td><input type="checkbox" name="remember-me" /></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /></td>
-				<td><input type="submit" value="Log in"></td>
-			</tr>
-		</table>
-		Nemate nalog? <a href="/Hospital/auth/registerUser">Registrujte se</a>
+		<input type="text" name="username" placeholder="Enter Username"
+			required><br> <br> <input type="password"
+			name="password" placeholder="Enter Password" required><br>
+		<br> <input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /><input type="submit" value="Log in"
+			class="button"><br> <br> Nemate nalog? <a
+			href="/Hospital/auth/registerUser">Registrujte se</a>
 	</form>
 </body>
 </html>

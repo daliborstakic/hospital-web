@@ -103,6 +103,9 @@ public class AdminController {
 		List<Specijalizacija> specijalizacije = specijalizacijaRepository.findAll();
 		List<Departman> departmani = departmanRepository.findAll();
 
+		departmani.sort((d1, d2) -> d1.getNaziv().compareTo(d2.getNaziv()));
+		specijalizacije.sort((s1, s2) -> s1.getNaziv().compareTo(s2.getNaziv()));
+
 		request.getSession().setAttribute("departmani", departmani);
 		request.getSession().setAttribute("specijalizacije", specijalizacije);
 

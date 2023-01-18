@@ -8,10 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/Hospital/pacijent/sacuvajZakazivanje" method="post">
-		<label>Datum: </label> <input type="date" name="datum"> ${ idDoktor }
-		<input type="submit" value="Sačuvaj"><input type="hidden"
-			name="idDoktor" value="${ idDoktor }"><input type="hidden"
+	<h1>Unos simptoma</h1>
+	<form action="/Hospital/doktor/sacuvajSimptom" method="post">
+		<label>Naziv: </label>
+		<spring:bind path="simptom.naziv">
+			<input type="text" name="${ status.expression }" required>
+		</spring:bind>
+		<input type="submit" value="Sačuvaj"> <input type="hidden"
 			name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 </body>
