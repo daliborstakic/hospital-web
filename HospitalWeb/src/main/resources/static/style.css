@@ -167,7 +167,21 @@ form input {
     color: var(--light-black);
 }
 
-.select {
+.form {
+	display: flex;
+	justify-content: center;
+}
+
+.input-field {
+  display: flex;
+  align-items: center;
+}
+
+.input-field > * {
+	padding: 10px;;
+}
+
+select {
     border-radius: 10px;
     background-color: var(--off-white);
     color: var(--light-black);
@@ -175,7 +189,7 @@ form input {
     padding: 5px;
 }
 
-.select-items {
+option {
     background-color: var(--dark-white-white);
     color: var(--light-black);
     padding: 5px;

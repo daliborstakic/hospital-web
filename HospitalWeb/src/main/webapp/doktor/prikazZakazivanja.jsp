@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,8 @@
 			<ul class="nav-links">
 				<li><a href="/Hospital/doktor/unesiSimptome">Unesi simptome</a></li>
 				<li><a href="/Hospital/doktor/unesiPregled">Unesi pregled</a></li>
-				<li><a href="/Hospital/pacijent/prikazDoktora">Prikaz
-						doktora</a></li>
+				<li><a href="/Hospital/doktor/unesiDijagnozu">Unesi
+						dijagnozu</a></li>
 			</ul>
 		</div>
 		<div class="main">
@@ -44,26 +45,21 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<c:if test="${ not empty zakazivanje }">
-							<h2>Odabrani pacijent: ${ zakazivanje.getPacijent().getIme() }
-								${ zakazivanje.getPacijent().getPrezime() }</h2>
-							<br>
+					</c:if>
+					<c:if test="${ not empty zakazivanje }">
+						<h2>Odabrani pacijent: ${ zakazivanje.getPacijent().getIme() }
+							${ zakazivanje.getPacijent().getPrezime() }</h2>
+						<br>
+						<div class="form">
 							<form action="/Hospital/doktor/sacuvajPregled" method="post">
-								<label>Odaberite lekove: </label><select name="lekovi" multiple
-									class="select">
-									<c:forEach items="${ lekovi }" var="lek">
-										<option value="${ lek.getIdLek() }" class="select-items">${ lek.getNaziv() }</option>
-									</c:forEach>
-								</select> <br> <br> <label>Odaberite dijagnozu: </label> <select
-									name="dijagnoza" class="select">
-									<c:forEach items="${ dijagnoze }" var="dig">
-										<option value=${ dig.getIdDijagnoza() } class="select-items">${ dig.getNaziv() }</option>
-									</c:forEach>
-								</select> <br> <br> <input type="submit" value="Prikaži"
-									class="button"> <input type="hidden"
-									name="${_csrf.parameterName}" value="${_csrf.token}">
+								<label>Odaberite dijagnozu: </label>
+								<form:select items="${ dijagnoze }" itemLabel="naziv"
+									path="pregled.dijagnoza" class="select" />
+								<input type="submit" class="button" value="Unesi" /> <input
+									type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}">
 							</form>
-						</c:if>
+						</div>
 					</c:if>
 				</div>
 			</div>
