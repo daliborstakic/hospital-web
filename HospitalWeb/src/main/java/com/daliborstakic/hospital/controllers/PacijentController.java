@@ -17,14 +17,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daliborstakic.hospital.repositories.DoktorRepository;
+import com.daliborstakic.hospital.repositories.ObavestenjeRepository;
 import com.daliborstakic.hospital.repositories.OmiljeniRepository;
 import com.daliborstakic.hospital.repositories.PacijentRepository;
+import com.daliborstakic.hospital.repositories.PregledRepository;
+import com.daliborstakic.hospital.repositories.ReceptRepository;
 import com.daliborstakic.hospital.repositories.SpecijalizacijaRepository;
 import com.daliborstakic.hospital.repositories.ZakazivanjeRepository;
 
 import model.Doktor;
+import model.Obavestenje;
 import model.Omiljeni;
 import model.Pacijent;
+import model.Pregled;
+import model.Recept;
 import model.Specijalizacija;
 import model.Zakazivanje;
 
@@ -46,6 +52,15 @@ public class PacijentController {
 	@Autowired
 	OmiljeniRepository omiljeniRepository;
 
+	@Autowired
+	PregledRepository preglediRepository;
+
+	@Autowired
+	ReceptRepository receptRepository;
+
+	@Autowired
+	ObavestenjeRepository obavestenjaRepository;
+
 	@GetMapping(value = "pocetna")
 	public String redirectToPocetna(HttpServletRequest request) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -53,9 +68,11 @@ public class PacijentController {
 
 		Pacijent pacijent = pacijentRepository.findPacijentByUsername(currentPrincipalName);
 
+		List<Obavestenje> obavestenja = obavestenjaRepository.findByPacijent(pacijent.getIdPacijent());
 		List<Omiljeni> omiljeni = omiljeniRepository.findByPacijent(pacijent);
 
 		request.getSession().setAttribute("pacijent", pacijent);
+		request.getSession().setAttribute("obavestenja", obavestenja);
 		request.getSession().setAttribute("omiljeni", omiljeni);
 
 		return "pacijent/pacijentHome";
@@ -63,6 +80,9 @@ public class PacijentController {
 
 	@GetMapping(value = "zakaziPregled")
 	public String redirectToZakaziPregled(HttpServletRequest request) {
+		request.getSession().removeAttribute("doktori");
+		request.getSession().removeAttribute("doktor");
+
 		List<Specijalizacija> specijalizacije = specijalizacijaRepository.findAll();
 
 		request.getSession().setAttribute("specijalizacije", specijalizacije);
@@ -153,6 +173,14 @@ public class PacijentController {
 
 		zakazivanje.setDatum(date);
 
+		Obavestenje obavestenje = new Obavestenje();
+		obavestenje.setDoktor(zakazivanje.getDoktor());
+		obavestenje.setPacijent(zakazivanje.getPacijent());
+		obavestenje.setKreator("PACIJENT");
+		obavestenje.setPoruka("Pomereno vam je zakazivanje kod pacijenta: " + obavestenje.getPacijent().getIme() + " "
+				+ obavestenje.getPacijent().getPrezime() + ", na datum: " + datum);
+
+		obavestenjaRepository.save(obavestenje);
 		zakazivanjeRepository.save(zakazivanje);
 
 		return new ModelAndView("redirect:/pacijent/prikaziZakazivanja");
@@ -186,6 +214,51 @@ public class PacijentController {
 		pacijent.addOmiljeni(omiljeni);
 
 		omiljeniRepository.save(omiljeni);
+
+		return new ModelAndView("redirect:/pacijent/pocetna");
+	}
+
+	@GetMapping(value = "prikaziPreglede")
+	public String redirectToPrikaziPreglede(HttpServletRequest request) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+
+		Pacijent pacijent = pacijentRepository.findPacijentByUsername(currentPrincipalName);
+
+		List<Pregled> pregledi = preglediRepository.findByPacijent(pacijent);
+
+		request.setAttribute("pregledi", pregledi);
+
+		return "pacijent/prikaziPreglede";
+	}
+
+	@GetMapping(value = "prikaziRecept")
+	public String redirectToPrikaziRecept(HttpServletRequest request) {
+		Integer idRecept = Integer.parseInt(request.getParameter("idRecept"));
+		Recept recept = receptRepository.findById(idRecept).get();
+
+		request.setAttribute("recept", recept);
+
+		return "pacijent/prikaziRecept";
+	}
+
+	@GetMapping(value = "otkaziZakazivanje")
+	public ModelAndView otkaziZakazivanje(HttpServletRequest request) {
+		Integer idZakazivanje = Integer.parseInt(request.getParameter("idZakazivanje"));
+
+		zakazivanjeRepository.deleteById(idZakazivanje);
+
+		return new ModelAndView("redirect:/pacijent/prikaziZakazivanja");
+	}
+
+	@GetMapping(value = "obrisiObavestenja")
+	public ModelAndView obrisiObavestenja() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+
+		Pacijent pacijent = pacijentRepository.findPacijentByUsername(currentPrincipalName);
+
+		obavestenjaRepository.deleteByPacijent(pacijent.getIdPacijent());
 
 		return new ModelAndView("redirect:/pacijent/pocetna");
 	}

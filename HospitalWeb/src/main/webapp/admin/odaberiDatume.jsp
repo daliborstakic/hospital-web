@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*, java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin - Unos departmana</title>
+<title>Admin - Odaberi datume</title>
 <link rel="stylesheet" href="../style.css" type="text/css" />
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
@@ -28,13 +30,12 @@
 	</div>
 	<div class="right-content">
 		<div class="header">
-			<h1>Unos departmana</h1>
+			<h1>Odaberite datume za zakazivanja</h1>
 		</div>
-		<form action="/Hospital/admin/sacuvajDepartman" method="post">
-			<spring:bind path="departman.naziv">
-				<input type="text" placeholder="Naziv" name="${ status.expression }" required>
-			</spring:bind>
-			<input type="submit" value="Sačuvaj"> <input type="hidden"
+		<form action="/Hospital/admin/izvestajOZakazivanjima" method="post">
+			<input type="date" name="prviDatum" required /> <input type="date"
+				name="drugiDatum" required /> <input type="submit" value="Generiši"
+				class="button"> <input type="hidden"
 				name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</div>

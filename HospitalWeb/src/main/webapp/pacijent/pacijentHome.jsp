@@ -16,17 +16,16 @@
 			<ul class="nav-links">
 				<li><a href="/Hospital/pacijent/zakaziPregled">Zakaži
 						pregled</a></li>
-				<li><a href="/Hospital/pacijent/prikaziZakazivanja">Prikaz
-						zakazivanja</a></li>
-				<li><a href="/Hospital/pacijent/prikazDoktora">Prikaz
-						doktora</a></li>
+				<li><a href="/Hospital/pacijent/prikaziZakazivanja">Zakazivanja</a></li>
+				<li><a href="/Hospital/pacijent/prikazDoktora">Svi doktori</a></li>
+				<li><a href="/Hospital/pacijent/prikaziPreglede">Pregledi</a>
 			</ul>
 		</div>
 		<div class="main">
 			<h1>Omiljeni doktori</h1>
 			<div class="content">
-				<c:if test="${ not empty omiljeni }">
-					<div class="table">
+				<div class="table">
+					<c:if test="${ not empty omiljeni }">
 						<table>
 							<tr>
 								<th>Ime doktora</th>
@@ -46,8 +45,22 @@
 								</tr>
 							</c:forEach>
 						</table>
+					</c:if>
+					<div class="obavestenje">
+						<c:if test="${ not empty obavestenja }">
+							<c:forEach items="${ obavestenja }" var="obav">
+								<h2>${ obav.getPoruka() }</h2>
+							</c:forEach>
+							<br>
+							<a href="/Hospital/pacijent/obrisiObavestenja">Obriši
+								obavestenja</a>
+						</c:if>
+						<br>
+						<c:if test="${ empty obavestenja }">
+							<h2>Nemate obaveštenja!</h2>
+						</c:if>
 					</div>
-				</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

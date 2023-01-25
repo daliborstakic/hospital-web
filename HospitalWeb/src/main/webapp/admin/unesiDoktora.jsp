@@ -6,40 +6,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin - Unos doktora</title>
+<link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
-	<h1>Unos doktora</h1>
-	<form action="/Hospital/admin/sacuvajDoktora" method="post">
-		<label>Ime: </label>
-		<spring:bind path="doktor.ime">
-			<input type="text" name="${status.expression }">
-		</spring:bind>
-		<br> <br> <label>Prezime: </label>
-		<spring:bind path="doktor.prezime">
-			<input type="text" name="${status.expression }">
-		</spring:bind>
-		<br> <br> <label>Username: </label>
-		<spring:bind path="korisnik.username">
-			<input type="text" name="${status.expression }">
-		</spring:bind>
-		<br> <br> <label>Password: </label>
-		<spring:bind path="korisnik.password">
-			<input type="password" name="${status.expression }">
-		</spring:bind>
-		<br> <br> <label>Specijalizacija: </label> <select
-			name="specijalizacija">
-			<c:forEach items="${ specijalizacije }" var="spec">
-				<option value="${ spec.getIdSpecijalizacija() }">${ spec.getNaziv() }</option>
-			</c:forEach>
-		</select> <br> <br> <label>Departman: </label> <select
-			name="departman">
-			<c:forEach items="${ departmani }" var="dep">
-				<option value="${ dep.getIdDepartman() }">${ dep.getNaziv() }</option>
-			</c:forEach>
-		</select> <br> <br> <input type="submit" value="Sačuvaj"> <input
-			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<br>
-	</form>
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/admin/pocetna">Glavna stranica</a></li>
+			<li><a href="/Hospital/admin/unesiDoktora">Unesi doktora</a></li>
+			<li><a href="/Hospital/admin/unesiDepartman">Unesi departman</a></li>
+			<li><a href="/Hospital/admin/unesiSpecijalizaciju">Unesi
+					specijalizaciju</a></li>
+			<li><a href="/Hospital/admin/unesiLek">Unesi lekove</a></li>
+			<li><a href="/Hospital/admin/unesiTehnicara">Unesi tehničara</a></li>
+			<li><a href="/Hospital/admin/generisiIzvestajOPregledima">Generiši
+					izveštaj o svim pregledima</a></li>
+			<li><a href="/Hospital/admin/generisiIzvestajOZakazivanjima">Generiši
+					izveštaj o svim zakazivanjima</a>
+		</ul>
+	</div>
+	<div class="right-content">
+		<div class="header">
+			<h1>Unos doktora</h1>
+		</div>
+		<form action="/Hospital/admin/sacuvajDoktora" method="post">
+			<spring:bind path="doktor.ime">
+				<input type="text" placeholder="Ime" name="${status.expression }"
+					required>
+			</spring:bind>
+			<spring:bind path="doktor.prezime">
+				<input type="text" placeholder="Prezime"
+					name="${status.expression }" required>
+			</spring:bind>
+			<spring:bind path="korisnik.username">
+				<input type="text" placeholder="Korisničko ime"
+					name="${status.expression }" required>
+			</spring:bind>
+			<spring:bind path="korisnik.password">
+				<input type="password" placeholder="Šifra"
+					name="${status.expression }" required>
+			</spring:bind>
+			<select name="specijalizacija">
+				<c:forEach items="${ specijalizacije }" var="spec">
+					<option value="${ spec.getIdSpecijalizacija() }">${ spec.getNaziv() }</option>
+				</c:forEach>
+			</select> <select name="departman">
+				<c:forEach items="${ departmani }" var="dep">
+					<option value="${ dep.getIdDepartman() }">${ dep.getNaziv() }</option>
+				</c:forEach>
+			</select> <input type="submit" value="Sačuvaj"> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}"> <br>
+		</form>
+	</div>
 </body>
 </html>

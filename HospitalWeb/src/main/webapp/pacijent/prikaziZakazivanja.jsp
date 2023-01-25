@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.io.*,java.util.*, javax.servlet.*, java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,7 @@
 				<th>Specijalizacija doktora</th>
 				<th>Datum</th>
 				<th>Promeni termin</th>
+				<th>Otkaži</th>
 			</tr>
 			<c:forEach items="${ zakazivanja }" var="zak">
 				<tr>
@@ -29,14 +31,21 @@
 						</p></td>
 					<td><a
 						href="/Hospital/pacijent/odaberiZakazivanje?idZakazivanje=${ zak.getIdZakazivanje() }">Izmeni</a></td>
+					<td><a
+						href="/Hospital/pacijent/otkaziZakazivanje?idZakazivanje=${ zak.getIdZakazivanje() }">Otkaži</a>
 				</tr>
 			</c:forEach>
 		</table>
 	</c:if>
 	<c:if test="${ not empty zakazivanje }">
 		<form action="/Hospital/pacijent/pomeriZakazivanje" method="post">
-			<label>Datum: </label><input type="date" name="datum"> <input
-				type="submit" value="Zakaži" class="button"> <input
+			<label>Datum: </label>
+			<%
+			String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		
+			out.print("<input type=\"date\" name=\"datum\" min=\"" + now + "\"/>");
+			%>
+			<input type="submit" value="Zakaži" class="button"> <input
 				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</form>
 	</c:if>

@@ -25,6 +25,9 @@
 			<h1>Unos pregleda</h1>
 			<div class="content">
 				<div class="table">
+					<c:if test="${ empty zakazivanja }">
+						<h2>Nemate zakazanih pregleda!</h2>
+					</c:if>
 					<c:if test="${ not empty zakazivanja }">
 						<table>
 							<tr>
@@ -32,6 +35,7 @@
 								<th>Prezime</th>
 								<th>Datum</th>
 								<th>Unesi pregled</th>
+								<th>Otkaži pregled</th>
 							</tr>
 							<c:forEach items="${ zakazivanja }" var="zak">
 								<tr>
@@ -42,6 +46,8 @@
 										</p></td>
 									<td><a
 										href="/Hospital/doktor/odaberiZakazivanje?idZakazivanje=${ zak.getIdZakazivanje() }">Unesi</a></td>
+									<td><a
+										href="/Hospital/doktor/otkaziPregled?idZakazivanje=${ zak.getIdZakazivanje() }">Otkaži</a></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -55,6 +61,15 @@
 								<label>Odaberite dijagnozu: </label>
 								<form:select items="${ dijagnoze }" itemLabel="naziv"
 									path="pregled.dijagnoza" class="select" />
+								<br> <br> <label>Odaberite lekove: </label>
+								<form:select items="${ lekovi }" itemLabel="naziv"
+									multiple="true" path="recept.leks" class="select" />
+								<br> <br> <label>Odaberite tehničara: </label>
+								<form:select items="${ tehnicari }" path="pregled.tehnicar"
+									class="select" />
+								<br> <br> <label>Unesite datum: </label><input
+									type="date" name="date" /> <br> <br> <label>Unesite
+									opis: </label> <input type="text" name="opis"><br> <br>
 								<input type="submit" class="button" value="Unesi" /> <input
 									type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}">

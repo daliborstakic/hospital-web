@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="svaZakazivanja" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="139ef033-f48d-4851-8c7b-74cc950b6e06">
+	<parameter name="pocetniDatum" class="java.lang.String"/>
+	<parameter name="krajniDatum" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="doktor.ime" class="java.lang.String"/>
+	<field name="doktor.prezime" class="java.lang.String"/>
+	<field name="pacijent.ime" class="java.lang.String"/>
+	<field name="pacijent.prezime" class="java.lang.String"/>
+	<field name="datum" class="java.util.Date"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{doktor.ime}+ $F{doktor.prezime}]]></groupExpression>
+		<groupHeader>
+			<band height="140">
+				<staticText>
+					<reportElement x="0" y="20" width="100" height="30" uuid="082dc002-af30-4e3f-b16b-e844b4e697e7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="813f30e5-1298-45cd-a5cb-c18ea51ac417"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="12"/>
+					</textElement>
+					<text><![CDATA[Ime doktora:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="20" width="100" height="30" uuid="5939d9fc-f5d3-4914-84e1-20cc3e958564">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d9d6842-7de1-4c1d-81e0-da2ad73d008e"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="12"/>
+					</textElement>
+					<text><![CDATA[Prezime doktora:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="20" width="180" height="30" uuid="a233a898-b262-4546-b211-74008b82cdba">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d9d6842-7de1-4c1d-81e0-da2ad73d008e"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{doktor.prezime}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="20" width="175" height="30" uuid="b79c6dfb-2231-4187-a89e-a1c272e962c6">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="813f30e5-1298-45cd-a5cb-c18ea51ac417"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{doktor.ime}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="180" y="50" width="200" height="40" forecolor="#FFFFFF" backcolor="#1BB4E4" uuid="15f8ebb7-2df2-4b92-ae28-381fe8b4211c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25279e33-8b25-4c40-8de6-803ebbebfeda"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#050000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ime pacijenta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="50" width="180" height="40" forecolor="#FFFFFF" backcolor="#1BB4E4" uuid="28dbdad4-0869-45af-9417-bdc0420e2011">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="010a6ef3-3c47-4fb2-a8aa-8acacc30d649"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#050000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Prezime pacijenta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="380" y="50" width="175" height="40" forecolor="#FFFFFF" backcolor="#1BB4E4" uuid="f961e8cd-e42e-40be-805c-534b9b45f14f">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="52dc9d0f-d701-4fb4-a513-5c064cf9e860"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#050000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Datum zakazivanja]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="90" width="180" height="50" uuid="02f46681-fbac-4034-80c7-e5f25291c55b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="010a6ef3-3c47-4fb2-a8aa-8acacc30d649"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pacijent.prezime}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="90" width="174" height="50" uuid="fcd9ebcb-bba1-4fb6-ace9-cce97addbe38"/>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{datum})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="180" y="90" width="200" height="50" uuid="3c033717-7f83-4c2f-ba3a-eea01eef9de4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="25279e33-8b25-4c40-8de6-803ebbebfeda"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SrbijaSans" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{pacijent.ime}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="135" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="280" height="80" uuid="beefc3f4-824e-443a-8922-09953ce60546">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans" size="24"/>
+				</textElement>
+				<text><![CDATA[Prikaz svih zakazivanja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="85" width="80" height="50" forecolor="#FFFFFF" backcolor="#E44B1B" uuid="faf464cc-5699-42fc-a4fc-c1edfe377d13"/>
+				<box>
+					<pen lineWidth="0.25" lineColor="#050000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans"/>
+				</textElement>
+				<text><![CDATA[Od:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="85" width="200" height="50" uuid="fb0dc791-1d61-4715-8536-eecc70b505de"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pocetniDatum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="85" width="80" height="50" forecolor="#FFFFFF" backcolor="#E44B1B" uuid="9e2da9e5-077c-4613-8df4-a139466ea69c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.25" lineColor="#050000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans"/>
+				</textElement>
+				<text><![CDATA[Do:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="85" width="195" height="50" uuid="d51c1b39-83a8-42cf-ad69-219fb5715c21"/>
+				<box>
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{krajniDatum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="30" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="31" uuid="80cefc7a-bcf8-465e-9495-fefc8dc9988b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SrbijaSans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

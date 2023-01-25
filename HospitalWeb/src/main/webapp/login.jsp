@@ -10,20 +10,34 @@
 <link rel="stylesheet" href="../style.css" type="text/css" />
 </head>
 <body>
-	<c:url var="loginUrl" value="/login" />
-	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
-		<div>
-			<p>Invalid username and password.</p>
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/doktor/unesiSimptome">Unos simptome</a></li>
+			<li><a href="/Hospital/doktor/unesiPregled">Unos pregleda</a></li>
+			<li><a href="/Hospital/doktor/unosDijagnoza">Unos dijagnozi</a></li>
+			<li><a href="/Hospital/doktor/prikaziPreglede">Prikaz
+					pregleda</a></li>
+		</ul>
+	</div>
+	<div class="right-content">
+		<c:url var="loginUrl" value="/login" />
+		<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+			<div>
+				<p>Invalid username and password.</p>
+			</div>
+		</c:if>
+		<div class="header">
+			<h1>Login</h1>
 		</div>
-	</c:if>
-	<form action="${loginUrl}" method="post">
-		<input type="text" name="username" placeholder="Enter Username"
-			required><br> <br> <input type="password"
-			name="password" placeholder="Enter Password" required><br>
-		<br> <input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" /><input type="submit" value="Log in"
-			class="button"><br> <br> Nemate nalog? <a
-			href="/Hospital/auth/registerUser">Registrujte se</a>
-	</form>
+		<form action="${loginUrl}" method="post">
+			<input type="text" name="username" placeholder="Enter Username"
+				required><input type="password" name="password"
+				placeholder="Enter Password" required><input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}" /><input
+				type="submit" value="Log in" class="button"> <br>
+			Nemate nalog? <a href="/Hospital/auth/registerUser">Registrujte
+				se</a>
+		</form>
+	</div>
 </body>
 </html>

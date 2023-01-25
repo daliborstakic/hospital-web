@@ -6,27 +6,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin - Unos tehničara</title>
+<link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
-	<h1>Unos tehnicara</h1>
-	<form action="/Hospital/admin/sacuvajTehnicara" method="post">
-		<label>Ime: </label>
-		<spring:bind path="tehnicar.ime">
-			<input type="text" name="${status.expression }" required>
-		</spring:bind>
-		<br> <br> <label>Prezime: </label>
-		<spring:bind path="tehnicar.prezime">
-			<input type="text" name="${status.expression }" required>
-		</spring:bind>
-		<br> <br> <label>Departman: </label> <select
-			name="departman">
-			<c:forEach items="${ departmani }" var="dep">
-				<option value="${ dep.getIdDepartman() }">${ dep.getNaziv() }</option>
-			</c:forEach>
-		</select> <br> <br> <input type="submit" value="Sačuvaj"> <input
-			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<br>
-	</form>
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/admin/pocetna">Glavna stranica</a></li>
+			<li><a href="/Hospital/admin/unesiDoktora">Unesi doktora</a></li>
+			<li><a href="/Hospital/admin/unesiDepartman">Unesi departman</a></li>
+			<li><a href="/Hospital/admin/unesiSpecijalizaciju">Unesi
+					specijalizaciju</a></li>
+			<li><a href="/Hospital/admin/unesiLek">Unesi lekove</a></li>
+			<li><a href="/Hospital/admin/unesiTehnicara">Unesi tehničara</a></li>
+			<li><a href="/Hospital/admin/generisiIzvestajOPregledima">Generiši
+					izveštaj o svim pregledima</a></li>
+			<li><a href="/Hospital/admin/generisiIzvestajOZakazivanjima">Generiši
+					izveštaj o svim zakazivanjima</a>
+		</ul>
+	</div>
+	<div class="right-content">
+		<div class="header">
+			<h1>Unos tehničara</h1>
+		</div>
+		<form action="/Hospital/admin/sacuvajTehnicara" method="post">
+			<spring:bind path="tehnicar.ime">
+				<input type="text" placeholder="Ime" name="${status.expression }"
+					required>
+			</spring:bind>
+			<spring:bind path="tehnicar.prezime">
+				<input type="text" placeholder="Prezime"
+					name="${status.expression }" required>
+			</spring:bind>
+			<select name="departman">
+				<c:forEach items="${ departmani }" var="dep">
+					<option value="${ dep.getIdDepartman() }">${ dep.getNaziv() }</option>
+				</c:forEach>
+			</select><input type="submit" value="Sačuvaj"> <input type="hidden"
+				name="${_csrf.parameterName}" value="${_csrf.token}"> <br>
+		</form>
+	</div>
 </body>
 </html>
