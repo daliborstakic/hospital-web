@@ -9,15 +9,20 @@
 <meta charset="UTF-8">
 <title>Doktor - Početna stranica</title>
 <link rel="stylesheet" href="../style.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
 	<div class="left-menu">
 		<ul class="nav-links">
+			<li><a href="/Hospital/doktor/pocetna">Glavna stranica</a></li>
 			<li><a href="/Hospital/doktor/unesiSimptome">Unesi simptome</a></li>
 			<li><a href="/Hospital/doktor/unesiPregled">Unesi pregled</a></li>
 			<li><a href="/Hospital/doktor/unosDijagnoza">Unesi dijagnozu</a></li>
 			<li><a href="/Hospital/doktor/prikaziPreglede">Prikaz
 					pregleda</a></li>
+			<li><a href="/Hospital/doktor/prikaziSimptome">Prikaz
+					simptoma</a></li>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
 		</ul>
 	</div>
 	<div class="right-content">

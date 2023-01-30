@@ -8,77 +8,75 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Doktor - Unos pregleda</title>
 <link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
-	<div class="wrapper">
-		<div class="sidenav">
-			<ul class="nav-links">
-				<li><a href="/Hospital/doktor/unesiSimptome">Unesi simptome</a></li>
-				<li><a href="/Hospital/doktor/unesiPregled">Unesi pregled</a></li>
-				<li><a href="/Hospital/doktor/unesiDijagnozu">Unesi
-						dijagnozu</a></li>
-			</ul>
-		</div>
-		<div class="main">
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/doktor/pocetna">Glavna stranica</a></li>
+			<li><a href="/Hospital/doktor/unesiSimptome">Unesi simptome</a></li>
+			<li><a href="/Hospital/doktor/unesiPregled">Unesi pregled</a></li>
+			<li><a href="/Hospital/doktor/unosDijagnoza">Unesi dijagnozu</a></li>
+			<li><a href="/Hospital/doktor/prikaziPreglede">Prikaz
+					pregleda</a></li>
+			<li><a href="/Hospital/doktor/prikaziSimptome">Prikaz
+					simptoma</a></li>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
+		</ul>
+	</div>
+	<div class="right-content">
+		<div class="header">
 			<h1>Unos pregleda</h1>
-			<div class="content">
-				<div class="table">
-					<c:if test="${ empty zakazivanja }">
-						<h2>Nemate zakazanih pregleda!</h2>
-					</c:if>
-					<c:if test="${ not empty zakazivanja }">
-						<table>
-							<tr>
-								<th>Ime</th>
-								<th>Prezime</th>
-								<th>Datum</th>
-								<th>Unesi pregled</th>
-								<th>Otkaži pregled</th>
-							</tr>
-							<c:forEach items="${ zakazivanja }" var="zak">
-								<tr>
-									<td>${ zak.getPacijent().getIme() }</td>
-									<td>${ zak.getPacijent().getPrezime() }</td>
-									<td><p class="date">
-											<fmt:formatDate type="date" value="${zak.getDatum()}" />
-										</p></td>
-									<td><a
-										href="/Hospital/doktor/odaberiZakazivanje?idZakazivanje=${ zak.getIdZakazivanje() }">Unesi</a></td>
-									<td><a
-										href="/Hospital/doktor/otkaziPregled?idZakazivanje=${ zak.getIdZakazivanje() }">Otkaži</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</c:if>
-					<c:if test="${ not empty zakazivanje }">
-						<h2>Odabrani pacijent: ${ zakazivanje.getPacijent().getIme() }
-							${ zakazivanje.getPacijent().getPrezime() }</h2>
-						<br>
-						<div class="form">
-							<form action="/Hospital/doktor/sacuvajPregled" method="post">
-								<label>Odaberite dijagnozu: </label>
-								<form:select items="${ dijagnoze }" itemLabel="naziv"
-									path="pregled.dijagnoza" class="select" />
-								<br> <br> <label>Odaberite lekove: </label>
-								<form:select items="${ lekovi }" itemLabel="naziv"
-									multiple="true" path="recept.leks" class="select" />
-								<br> <br> <label>Odaberite tehničara: </label>
-								<form:select items="${ tehnicari }" path="pregled.tehnicar"
-									class="select" />
-								<br> <br> <label>Unesite datum: </label><input
-									type="date" name="date" /> <br> <br> <label>Unesite
-									opis: </label> <input type="text" name="opis"><br> <br>
-								<input type="submit" class="button" value="Unesi" /> <input
-									type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}">
-							</form>
-						</div>
-					</c:if>
-				</div>
-			</div>
 		</div>
+		<br>
+		<c:if test="${ empty zakazivanja }">
+			<h2>Nemate zakazanih pregleda!</h2>
+		</c:if>
+		<c:if test="${ not empty zakazivanja }">
+			<table>
+				<tr>
+					<th>Ime</th>
+					<th>Prezime</th>
+					<th>Datum</th>
+					<th>Unesi pregled</th>
+					<th>Otkaži pregled</th>
+				</tr>
+				<c:forEach items="${ zakazivanja }" var="zak">
+					<tr>
+						<td>${ zak.getPacijent().getIme() }</td>
+						<td>${ zak.getPacijent().getPrezime() }</td>
+						<td><p class="date">
+								<fmt:formatDate type="date" value="${zak.getDatum()}" />
+							</p></td>
+						<td><a
+							href="/Hospital/doktor/odaberiZakazivanje?idZakazivanje=${ zak.getIdZakazivanje() }">Unesi</a></td>
+						<td><a
+							href="/Hospital/doktor/otkaziPregled?idZakazivanje=${ zak.getIdZakazivanje() }">Otkaži</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<br>
+		<c:if test="${ not empty zakazivanje }">
+			<h2>Odabrani pacijent: ${ zakazivanje.getPacijent().getIme() }
+				${ zakazivanje.getPacijent().getPrezime() }</h2>
+			<div class="form">
+				<form action="/Hospital/doktor/sacuvajPregled" method="post">
+					<form:select items="${ dijagnoze }" itemLabel="naziv"
+						path="pregled.dijagnoza" class="select" />
+					<form:select items="${ lekovi }" itemLabel="naziv" multiple="true"
+						path="recept.leks" class="select" />
+					<form:select items="${ tehnicari }" path="pregled.tehnicar"
+						class="select" />
+					<input type="date" name="date" /><input type="text"
+						placeholder="Opis" name="opis"><input type="submit"
+						class="button" value="Unesi" /> <input type="hidden"
+						name="${_csrf.parameterName}" value="${_csrf.token}">
+				</form>
+			</div>
+		</c:if>
 	</div>
 </body>
 </html>

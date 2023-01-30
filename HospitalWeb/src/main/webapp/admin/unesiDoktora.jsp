@@ -24,6 +24,7 @@
 					izveštaj o svim pregledima</a></li>
 			<li><a href="/Hospital/admin/generisiIzvestajOZakazivanjima">Generiši
 					izveštaj o svim zakazivanjima</a>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
 		</ul>
 	</div>
 	<div class="right-content">

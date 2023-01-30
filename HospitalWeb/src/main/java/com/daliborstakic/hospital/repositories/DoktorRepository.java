@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import model.Doktor;
-import model.Pacijent;
 import model.Specijalizacija;
 
 public interface DoktorRepository extends JpaRepository<Doktor, Integer> {

@@ -39,8 +39,6 @@ import model.Dijagnoza;
 import model.Doktor;
 import model.Lek;
 import model.Obavestenje;
-import model.Omiljeni;
-import model.Pacijent;
 import model.Pregled;
 import model.Recept;
 import model.Simptom;
@@ -281,5 +279,41 @@ public class DoktorController {
 		obavestenjeRepository.deleteByDoktor(doktor.getIdDoktor());
 
 		return new ModelAndView("redirect:/doktor/pocetna");
+	}
+
+	@GetMapping(value = "prikaziSimptome")
+	public String redirectToPrikaziSimptome(HttpServletRequest request, Model model) {
+		request.getSession().removeAttribute("dijagnoze");
+
+		List<Simptom> simptomi = simptomRepository.findAll();
+
+		model.addAttribute("dijagnoza", new Dijagnoza());
+
+		request.getSession().setAttribute("simptomi", simptomi);
+
+		return "doktor/prikaziSimptome";
+	}
+
+	@GetMapping(value = "pretraziDijagnoze")
+	public String prikaziDijagnoze(HttpServletRequest request, @ModelAttribute("dijagnoza") Dijagnoza dijagnoza) {
+		List<Integer> simptomsIds = dijagnoza.getSimptoms().stream().map(p -> p.getIdSimptom())
+				.collect(Collectors.toList());
+
+		List<Dijagnoza> dijagnoze = dijagnozaRepository.findBySymptomIds(simptomsIds);
+
+		request.getSession().setAttribute("dijagnoze", dijagnoze);
+
+		return "doktor/prikaziSimptome";
+	}
+
+	@GetMapping(value = "prikaziPregledeDijagnoze")
+	public String prikaziPregledeDijagnoze(HttpServletRequest request,
+			@ModelAttribute("dijagnoza") Dijagnoza dijagnoza) {
+		Integer idDijagnoza = Integer.parseInt(request.getParameter("idDijagnoza"));
+		Dijagnoza odabranaDijagnoza = dijagnozaRepository.findById(idDijagnoza).get();
+
+		request.setAttribute("odabranaDijagnoza", odabranaDijagnoza);
+
+		return "doktor/prikaziSimptome";
 	}
 }

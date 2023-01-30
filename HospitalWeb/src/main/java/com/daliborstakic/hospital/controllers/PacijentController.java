@@ -186,15 +186,6 @@ public class PacijentController {
 		return new ModelAndView("redirect:/pacijent/prikaziZakazivanja");
 	}
 
-	@GetMapping(value = "prikazDoktora")
-	public String redirectToPrikazDoktora(HttpServletRequest request) {
-		List<Doktor> doktori = doktorRepository.findAll();
-
-		request.setAttribute("doktori", doktori);
-
-		return "pacijent/prikazDoktora";
-	}
-
 	@GetMapping(value = "omiljenDoktor")
 	public ModelAndView saveToOmiljen(HttpServletRequest request) {
 		Integer idDoktor = Integer.parseInt(request.getParameter("idDoktor"));

@@ -7,35 +7,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Doktor - Unos dijagnoze</title>
 <link rel="stylesheet" href="../style.css" type="text/css">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
-	<div class="wrapper">
-		<div class="sidenav">
-			<ul class="nav-links">
-				<li><a href="/Hospital/doktor/unesiSimptome">Unos simptome</a></li>
-				<li><a href="/Hospital/doktor/unesiPregled">Unos pregleda</a></li>
-				<li><a href="/Hospital/doktor/unosDijagnoza">Unos dijagnozi</a></li>
-			</ul>
-		</div>
-		<div class="main">
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/doktor/pocetna">Glavna stranica</a></li>
+			<li><a href="/Hospital/doktor/unesiSimptome">Unesi simptome</a></li>
+			<li><a href="/Hospital/doktor/unesiPregled">Unesi pregled</a></li>
+			<li><a href="/Hospital/doktor/unosDijagnoza">Unesi dijagnozu</a></li>
+			<li><a href="/Hospital/doktor/prikaziPreglede">Prikaz
+					pregleda</a></li>
+			<li><a href="/Hospital/doktor/prikaziSimptome">Prikaz
+					simptoma</a></li>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
+		</ul>
+	</div>
+	<div class="right-content">
+		<div class="header">
 			<h1>Unos dijagnoze</h1>
-			<div class="content">
-				<form action="/Hospital/doktor/sacuvajDijagnozu" method="post">
-					<label>Naziv: </label>
-					<spring:bind path="dijagnoza.naziv">
-						<input type="text" name="${ status.expression }" required>
-					</spring:bind>
-					<br> <br> <label>Simptomi: </label>
-					<form:select items="${ simptomi }" multiple="true"
-						path="dijagnoza.simptoms" itemLabel="naziv" class="select" />
-					<br> <br> <input type="submit" value="Sačuvaj"
-						class="button"> <input type="hidden"
-						name="${_csrf.parameterName}" value="${_csrf.token}">
-				</form>
-			</div>
 		</div>
+		<form action="/Hospital/doktor/sacuvajDijagnozu" method="post">
+			<spring:bind path="dijagnoza.naziv">
+				<input type="text" placeholder="Naziv" name="${ status.expression }"
+					required>
+			</spring:bind>
+			<form:select items="${ simptomi }" multiple="true"
+				path="dijagnoza.simptoms" itemLabel="naziv" class="select" />
+			<input type="submit" value="Sačuvaj" class="button"> <input
+				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		</form>
 	</div>
 </body>
 </html>

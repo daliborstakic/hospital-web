@@ -8,15 +8,14 @@
 <meta charset="UTF-8" />
 <title>Bolnica - Login</title>
 <link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
 	<div class="left-menu">
 		<ul class="nav-links">
-			<li><a href="/Hospital/doktor/unesiSimptome">Unos simptome</a></li>
-			<li><a href="/Hospital/doktor/unesiPregled">Unos pregleda</a></li>
-			<li><a href="/Hospital/doktor/unosDijagnoza">Unos dijagnozi</a></li>
-			<li><a href="/Hospital/doktor/prikaziPreglede">Prikaz
-					pregleda</a></li>
+			<li><a href="/Hospital/">Glavna stranica</a></li>
+			<li><a href="/Hospital/auth/prikazDoktora">Svi doktori</a></li>
+			<li><a href="/Hospital/auth/loginPage">Ulogujte se</a>
 		</ul>
 	</div>
 	<div class="right-content">

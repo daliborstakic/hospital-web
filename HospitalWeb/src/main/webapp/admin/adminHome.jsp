@@ -25,24 +25,13 @@
 					izveštaj o svim pregledima</a></li>
 			<li><a href="/Hospital/admin/generisiIzvestajOZakazivanjima">Generiši
 					izveštaj o svim zakazivanjima</a>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
 		</ul>
 	</div>
 	<div class="right-content">
 		<div class="header">
 			<h1>Dobrodošli na Admin stranicu!</h1>
 		</div>
-		<br>
-		<h2>Dobrodošli na naš portal za bolnicu!</h2>
-		<p>Naša bolnička zajednica je posvećena osiguravanju najvišeg
-			kvalitete zdravstvene skrbi za sve naše pacijente. Naši stručnjaci su
-			vrhunski u svom području i pridržavaju se najnovijih medicinskih
-			standarda. Naš portal pruža pacijentima pristup informacijama o našim
-			uslugama, liječnicima, pregledima i procedurama, kao i online
-			rezervacijama i plaćanjima. Također, pacijenti mogu pristupiti svom
-			elektroničkom kartonu i komunicirati s našim liječnicima putem naše
-			sigurne online platforme. Hvala što ste odabrali našu bolnicu za
-			svoje zdravstvene potrebe.</p>
-		<br>
 	</div>
 </body>
 </html>

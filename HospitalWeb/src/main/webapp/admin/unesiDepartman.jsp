@@ -24,6 +24,7 @@
 					izveštaj o svim pregledima</a></li>
 			<li><a href="/Hospital/admin/generisiIzvestajOZakazivanjima">Generiši
 					izveštaj o svim zakazivanjima</a>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
 		</ul>
 	</div>
 	<div class="right-content">
@@ -32,7 +33,8 @@
 		</div>
 		<form action="/Hospital/admin/sacuvajDepartman" method="post">
 			<spring:bind path="departman.naziv">
-				<input type="text" placeholder="Naziv" name="${ status.expression }" required>
+				<input type="text" placeholder="Naziv" name="${ status.expression }"
+					required>
 			</spring:bind>
 			<input type="submit" value="Sačuvaj"> <input type="hidden"
 				name="${_csrf.parameterName}" value="${_csrf.token}">

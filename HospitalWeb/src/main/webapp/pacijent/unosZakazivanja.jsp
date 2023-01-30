@@ -6,71 +6,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Pacijent - Zakazivanje</title>
 <link rel="stylesheet" href="../style.css" type="text/css" />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 </head>
 <body>
-	<div class="wrapper">
-		<div class="sidenav">
-			<ul class="nav-links">
-				<li><a href="/Hospital/pacijent/zakaziPregled">Zakaži
-						pregled</a></li>
-				<li><a href="/Hospital/pacijent/prikaziZakazivanja">Prikaz
-						zakazivanja</a></li>
-				<li><a href="/Hospital/pacijent/prikazDoktora">Prikaz
-						doktora</a></li>
-			</ul>
-		</div>
-		<div class="main">
+	<div class="left-menu">
+		<ul class="nav-links">
+			<li><a href="/Hospital/pacijent/pocetna">Glavna stranica</a></li>
+			<li><a href="/Hospital/pacijent/zakaziPregled">Zakaži
+					pregled</a></li>
+			<li><a href="/Hospital/pacijent/prikaziZakazivanja">Zakazivanja</a></li>
+			<li><a href="/Hospital/pacijent/prikaziPreglede">Pregledi</a>
+			<li><a href="/Hospital/auth/logout">Odjava</a></li>
+		</ul>
+	</div>
+	<div class="right-content">
+		<div class="header">
 			<h1>Zakazivanje pregleda</h1>
-			<div class="content">
-				<div class="table">
-					<form action="/Hospital/pacijent/prikaziDoktoreZaZakazivanje"
-						method="get">
-						<label>Odaberi specijalizaciju: </label> <select
-							name="specijalizacija" class="select">
-							<c:forEach items="${ specijalizacije }" var="spec">
-								<option value="${ spec.getIdSpecijalizacija() }"
-									class="select-items">${ spec.getNaziv() }</option>
-							</c:forEach>
-						</select> <input type="submit" value="Prikaži" class="button"> <input
-							type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}">
-					</form>
-					<br>
-					<c:if test="${ not empty doktori }">
-						<table>
-							<tr>
-								<th>Ime</th>
-								<th>Prezime</th>
-								<th>Specijalizacija</th>
-								<th>Departman</th>
-								<th>Zakazivanje</th>
-							</tr>
-							<c:forEach items="${ doktori }" var="dr">
-								<tr>
-									<td>${ dr.getIme() }</td>
-									<td>${ dr.getPrezime() }</td>
-									<td>${ dr.getSpecijalizacija().getNaziv() }</td>
-									<td>${ dr.getDepartman().getNaziv() }</td>
-									<td><a
-										href="/Hospital/pacijent/odaberiDoktora?idDoktor=${ dr.getIdDoktor() }">Zakaži</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</c:if>
-					<c:if test="${ not empty doktor }">
-						<h2>Vaš odabrani lekar je: ${ doktor.getIme() } ${ doktor.getPrezime() }</h2>
-						<form action="/Hospital/pacijent/sacuvajZakazivanje" method="post">
-							<label>Datum: </label><input type="date" name="datum"> <input
-								type="submit" value="Zakaži" class="button"> <input
-								type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}">
-						</form>
-					</c:if>
-				</div>
-			</div>
 		</div>
+		<form action="/Hospital/pacijent/prikaziDoktoreZaZakazivanje"
+			method="get">
+			<select name="specijalizacija" class="select">
+				<c:forEach items="${ specijalizacije }" var="spec">
+					<option value="${ spec.getIdSpecijalizacija() }"
+						class="select-items">${ spec.getNaziv() }</option>
+				</c:forEach>
+			</select> <input type="submit" value="Prikaži" class="button"> <input
+				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		</form>
+		<c:if test="${ not empty doktori }">
+			<table>
+				<tr>
+					<th>Ime</th>
+					<th>Prezime</th>
+					<th>Specijalizacija</th>
+					<th>Departman</th>
+					<th>Zakazivanje</th>
+					<th>Omiljeni</th>
+				</tr>
+				<c:forEach items="${ doktori }" var="dr">
+					<tr>
+						<td>${ dr.getIme() }</td>
+						<td>${ dr.getPrezime() }</td>
+						<td>${ dr.getSpecijalizacija().getNaziv() }</td>
+						<td>${ dr.getDepartman().getNaziv() }</td>
+						<td><a
+							href="/Hospital/pacijent/odaberiDoktora?idDoktor=${ dr.getIdDoktor() }">Zakaži</a></td>
+						<td><a
+							href="/Hospital/pacijent/omiljenDoktor?idDoktor=${ dr.getIdDoktor() }">Omiljeni</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+		<br>
+		<c:if test="${ not empty doktor }">
+			<h2>Vaš odabrani lekar je: ${ doktor.getIme() } ${ doktor.getPrezime() }</h2>
+			<form action="/Hospital/pacijent/sacuvajZakazivanje" method="post">
+				<input type="date" name="datum"> <input type="submit"
+					value="Zakaži" class="button"> <input type="hidden"
+					name="${_csrf.parameterName}" value="${_csrf.token}">
+			</form>
+		</c:if>
 	</div>
 </body>
 </html>

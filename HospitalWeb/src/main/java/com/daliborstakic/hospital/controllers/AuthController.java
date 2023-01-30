@@ -1,10 +1,13 @@
 package com.daliborstakic.hospital.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.daliborstakic.hospital.repositories.DoktorRepository;
 import com.daliborstakic.hospital.repositories.KorisnikRepository;
 import com.daliborstakic.hospital.repositories.PacijentRepository;
 import com.daliborstakic.hospital.repositories.UlogaRepository;
 import com.daliborstakic.hospital.security.CustomUserDetails;
 
+import model.Doktor;
 import model.Korisnik;
 import model.Pacijent;
 import model.Uloga;
@@ -35,6 +40,9 @@ public class AuthController {
 
 	@Autowired
 	PacijentRepository pacijentRepository;
+
+	@Autowired
+	DoktorRepository doktorRepository;
 
 	@GetMapping(value = "loginPage")
 	public String redirectToLoginPage() {
@@ -86,5 +94,25 @@ public class AuthController {
 		}
 
 		return new ModelAndView("redirect:/");
+	}
+
+	@GetMapping(value = "/logout")
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null) {
+			SecurityContextHolder.getContext().setAuthentication(null);
+		}
+
+		return "redirect:/auth/loginPage";
+	}
+
+	@GetMapping(value = "prikazDoktora")
+	public String redirectToPrikazDoktora(HttpServletRequest request) {
+		List<Doktor> doktori = doktorRepository.findAll();
+
+		request.setAttribute("doktori", doktori);
+
+		return "prikazDoktora";
 	}
 }

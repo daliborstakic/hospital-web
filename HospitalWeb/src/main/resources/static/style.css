@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
 :root {
-    --light-blue: #1BB4E4;
+    --light-blue: #1d7fdb;
     --light-black: rgb(20, 20, 20);
     --off-white: rgb(225, 225, 225);
     --dark-white: #C8C8C8;
-    --dark-red: #E44B1B;
-    --darker-red: #E96F49;
-    --dark-blue: #49C3E9;
+    --dark-red: #E1341E;
+    --darker-red: #E75D4B;
+    --dark-blue: #4598E6;
 }
 
 html {
@@ -71,8 +71,8 @@ table {
 
 /* Notification area */
 .notification {
+	display: inline-block;
     margin: 0 auto;
-    width: 50%;
     font-size: 10pt;
     text-align: center;
     padding: 10px;
@@ -80,14 +80,55 @@ table {
     background-color: var(--dark-red);
 }
 
+.image {
+	display: inline-block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+form a {
+	text-decoration: none;
+	color: var(--light-blue);
+	font-weight: bold;
+	transition: all 0.2s ease;
+}
+
+form a {
+	text-decoration: none;
+	color: var(--light-blue);
+}
+
+form a:hover {
+    color: var(--dark-blue);
+    transition: all 0.2s ease;
+}
+
+.image img {
+	width: 100%;
+	border-radius: 10px;
+}
+
+.text {
+	display: inline-block;
+    margin: 0 auto;
+    font-size: 1.2em;
+    text-align: justify;
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .notification a {
     text-decoration: none;
     color: var(--dark-white);
     font-weight: bold;
+    transition: all 0.2s ease;
 }
 
 .notification a:hover {
     color: var(--off-white);
+    font-size: 1.2em;
+    transition: all 0.2s ease;
 }
 
 .nav-links {
@@ -112,6 +153,7 @@ table {
 .nav-links li a:hover {
     transition: all 0.3s ease;
     font-weight: bold;
+    font-size: 1.2em;
     box-shadow: 0 0 10px var(--light-black);
     background-color: var(--off-white);
     color: var(--light-blue);
@@ -165,18 +207,13 @@ td a {
     font-weight: bold;
     color: var(--dark-blue);
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 td a:hover {
     color: var(--light-blue);
-}
-
-.button {
-    background-color: var(--dark-red);
-    padding: 5px;
-    color: var(--off-white);
-    border-radius: 10px;
-    font-weight: bold;
+    transition: all 0.2s ease;
+    font-size: 1.2em;
 }
 
 form {
@@ -206,8 +243,10 @@ form input[type="submit"] {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    transition: all 0.2s ease;
 }
 
 form input[type="submit"]:hover {
-    background-color: var(--darker-red);;
+    background-color: var(--darker-red);
+    transition: all 0.2s ease;
 }
