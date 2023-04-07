@@ -56,7 +56,7 @@
 				</c:forEach>
 				<br>
 				<a href="/Hospital/pacijent/obrisiObavestenja">Obriši
-					obavestenja</a>
+					obaveštenja</a>
 			</c:if>
 			<br>
 			<c:if test="${ empty obavestenja }">
