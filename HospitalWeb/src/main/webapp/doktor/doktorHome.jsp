@@ -55,7 +55,7 @@
 				<c:forEach items="${ obavestenja }" var="obav">
 					<h2>${ obav.getPoruka() }</h2>
 				</c:forEach>
-				<a href="/Hospital/doktor/obrisiObavestenja">Obriši obavestenja</a>
+				<a href="/Hospital/doktor/obrisiObavestenja">Obriši obaveštenja</a>
 			</c:if>
 			<c:if test="${ empty obavestenja }">
 				<h2>Nemate obaveštenja!</h2>
